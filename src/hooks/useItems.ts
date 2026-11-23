@@ -18,7 +18,10 @@ const useItems = () => {
 
 	useEffect(() => {
 		const fetchData = async () => {
-			const { data, error } = await supabase.from('products').select('*');
+			const { data, error } = await supabase
+				.from('products')
+				.select('*')
+				.order('id');
 
 			if (error) {
 				console.error(error);
