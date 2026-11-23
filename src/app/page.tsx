@@ -1,4 +1,5 @@
 import Container from '@/components/container';
+import Filter from '@/sections/main/filter';
 import MainItem from '@/components/main/item';
 
 //TODO: Добавить реальные данные, пока мок. JSDoc
@@ -6,9 +7,10 @@ import MainItem from '@/components/main/item';
 const Main = () => {
 	return (
 		<main>
-			<Container className='my-12 max-w-250!'>
-				<div className='flex flex-wrap justify-between gap-x-6 gap-y-40'>
-					{Array.from({ length: 24 }).map((_, index) => (
+			<Container className='max-w-250! my-12 flex w-full gap-4'>
+				<Filter />
+				<div className='flex flex-wrap gap-x-7 gap-y-40'>
+					{Array.from({ length: 25 }).map((_, index) => (
 						<MainItem key={index} />
 					))}
 				</div>

@@ -7,7 +7,7 @@ import Button from '@/components/button';
 
 const MainItem = () => {
 	return (
-		<div className='size-75 flex flex-col gap-2'>
+		<div className='size-60 flex flex-col gap-2'>
 			<Image src={BasePhoto} alt='base' />
 			<h3 className='text-gray-600'>Керамическая ваза</h3>
 			<p>
