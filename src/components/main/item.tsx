@@ -1,18 +1,29 @@
 import Image from 'next/image';
 
-import BasePhoto from '@/assets/items/base.png';
+import { IProduct } from '@/types/product';
+
 import Button from '@/components/button';
 
-//TODO: Добавить реальные данные, пока мок. JSDoc
+/**
+ * Карточка товара с изображением, названием, ценой и кнопками покупки.
+ *
+ * @param {IProduct} props - Данные товара
+ * @returns {JSX.Element} Компонент карточки товара
+ */
 
-const MainItem = () => {
+const MainItem = ({ name, price, thumbnail }: IProduct) => {
 	return (
 		<div className='size-60 flex flex-col gap-2'>
-			<Image src={BasePhoto} alt='base' />
-			<h3 className='text-gray-600'>Керамическая ваза</h3>
-			<p>
-				<data value='2490'>2490 ₽</data>
-			</p>
+			<Image
+				src={thumbnail}
+				alt={name}
+				width={300}
+				height={300}
+				className='size-full'
+				loading='eager'
+			/>
+			<h3 className='text-gray-600'>{name}</h3>
+			<data value={price}>{price} ₽</data>
 			<div className='flex w-full flex-1 gap-2'>
 				<Button label='В корзину' />
 				<Button label='Купить сразу' />
