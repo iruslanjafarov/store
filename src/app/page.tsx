@@ -1,6 +1,6 @@
 'use client';
 
-import useItems from '@/hooks/useItems';
+import useProducts from '@/hooks/useProducts';
 
 import useStore from '@/store/store';
 
@@ -19,7 +19,7 @@ import MainItem from '@/components/main/item';
  */
 
 const Main = () => {
-	const { loading } = useItems();
+	const { loading } = useProducts();
 
 	const { products } = useStore();
 

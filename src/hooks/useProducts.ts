@@ -5,20 +5,20 @@ import { supabase } from '@/utils/supabase/supabase';
 import useStore from '@/store/store';
 
 /**
- * Кастомный хук для загрузки списка элементов.
- * Предоставляет данные и состояние загрузки для списка элементов.
+ * Кастомный хук для загрузки списка товаров.
+ * Предоставляет данные и состояние загрузки для списка товаров.
  *
  * @returns Объект с полем `loading`, указывающим на процесс загрузки.
  */
 
-const useItems = () => {
+const useProducts = () => {
 	const [loading, setLoading] = useState<boolean>(true);
 
 	const { setProducts } = useStore();
 
 	useEffect(() => {
 		const fetchData = async () => {
-			const { data, error } = await supabase
+			const { data: products, error } = await supabase
 				.from('products')
 				.select('*')
 				.order('id');
@@ -26,7 +26,7 @@ const useItems = () => {
 			if (error) {
 				console.error(error);
 			} else {
-				setProducts(data);
+				setProducts(products);
 			}
 
 			setLoading(false);
@@ -38,4 +38,4 @@ const useItems = () => {
 	return { loading };
 };
 
-export default useItems;
+export default useProducts;
