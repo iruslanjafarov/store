@@ -1,5 +1,7 @@
 'use client';
 
+import { useState } from 'react';
+
 import useProducts from '@/hooks/useProducts';
 
 import useStore from '@/store/store';
@@ -20,6 +22,8 @@ import MainItem from '@/components/main/item';
  */
 
 const MainContent = () => {
+	const [isFirstView, setIsFirstView] = useState(true);
+
 	const { loading } = useProducts();
 
 	const { products } = useStore();
@@ -35,7 +39,12 @@ const MainContent = () => {
 						</div>
 					) : products?.length ? (
 						products.map(({ id, name, price, thumbnail }, index) => (
-							<TransitionView key={id} index={index}>
+							<TransitionView
+								key={id}
+								index={index}
+								animate={isFirstView}
+								onAnimationComplete={() => setIsFirstView(false)}
+							>
 								<MainItem
 									id={id}
 									name={name}
