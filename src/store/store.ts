@@ -1,24 +1,29 @@
 import { create } from 'zustand';
 
 import { IProduct } from '@/types/product';
-import { ICategories } from '@/types/categories';
+import { ICategory } from '@/types/category';
 
 //TODO: Добавить Devtools. JSDoc
 
 interface IStore {
 	products: IProduct[];
-	categories: ICategories[];
+	categories: ICategory[];
+	selectedCategories: number[];
 
 	setProducts: (products: IProduct[]) => void;
-	setCategories: (categories: ICategories[]) => void;
+	setCategories: (categories: ICategory[]) => void;
+	setSelectedCategories: (category: number[]) => void;
 }
 
 const useStore = create<IStore>((set) => ({
 	products: [],
 	categories: [],
+	selectedCategories: [],
 
 	setProducts: (products) => set({ products }),
 	setCategories: (categories) => set({ categories }),
+	setSelectedCategories: (categories) =>
+		set({ selectedCategories: categories }),
 }));
 
 export default useStore;

@@ -11,9 +11,19 @@ import Spinner from '@/components/spinner';
 //TODO: Редизайн. JSDoc
 
 const Filter = () => {
-	const { categories } = useStore();
+	const { categories, selectedCategories, setSelectedCategories } = useStore();
 
 	const { loading } = useCategories();
+
+	const setCategory = (id: number) => {
+		setSelectedCategories(
+			selectedCategories?.includes(id)
+				? selectedCategories?.filter(
+						(selectedCategory) => selectedCategory !== id,
+					)
+				: [...selectedCategories, id],
+		);
+	};
 
 	return (
 		<aside className='sticky top-25 self-start shrink-0'>
@@ -29,7 +39,9 @@ const Filter = () => {
 						</div>
 						<div className='space-y-6'>
 							{categories?.map(({ id, name }) => (
-								<Checkbox key={id} label={name} />
+								<div key={id} onClick={() => setCategory(id)}>
+									<Checkbox label={name} />
+								</div>
 							))}
 							<div className='border-t border-gray-200/60' />
 						</div>

@@ -14,14 +14,17 @@ import useStore from '@/store/store';
 const useProducts = () => {
 	const [loading, setLoading] = useState<boolean>(true);
 
-	const { setProducts } = useStore();
+	const { selectedCategories, setProducts } = useStore();
 
 	useEffect(() => {
 		const fetchData = async () => {
-			const { data: products, error } = await supabase
-				.from('products')
-				.select('*')
-				.order('id');
+			let query = supabase.from('products').select('*').order('id');
+
+			if (selectedCategories?.length) {
+				query = query.in('category_id', selectedCategories);
+			}
+
+			const { data: products, error } = await query;
 
 			if (error) {
 				console.error(error);
@@ -33,7 +36,7 @@ const useProducts = () => {
 		};
 
 		fetchData();
-	}, [setProducts]);
+	}, [selectedCategories, setProducts]);
 
 	return { loading };
 };
