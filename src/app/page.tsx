@@ -1,16 +1,6 @@
-'use client';
+import { Suspense } from 'react';
 
-import useProducts from '@/hooks/useProducts';
-
-import useStore from '@/store/store';
-
-import { transformImageLink } from '@/utils/supabase/transformImageLink';
-
-import Container from '@/components/container';
-import TransitionView from '@/components/transitionView';
-import Spinner from '@/components/spinner';
-import Filter from '@/sections/main/filter';
-import MainItem from '@/components/main/item';
+import MainContent from '@/sections/main/suspense/content';
 
 /**
  * Главная страница магазина с каталогом товаров и фильтрацией.
@@ -19,40 +9,10 @@ import MainItem from '@/components/main/item';
  */
 
 const Main = () => {
-	const { loading } = useProducts();
-
-	const { products } = useStore();
-
 	return (
-		<main>
-			<Container className='max-w-250! my-12 flex w-full gap-4'>
-				<Filter />
-				<div className='relative min-w-0 flex flex-1 flex-wrap gap-x-7 gap-y-40'>
-					{loading ? (
-						<div className='absolute inset-0 z-10 flex items-center justify-center'>
-							<Spinner />
-						</div>
-					) : products?.length ? (
-						products.map(({ id, name, price, thumbnail }, index) => (
-							<TransitionView key={id} index={index}>
-								<MainItem
-									id={id}
-									name={name}
-									price={price}
-									thumbnail={transformImageLink(thumbnail)}
-								/>
-							</TransitionView>
-						))
-					) : (
-						<TransitionView index={1} className='w-full text-center'>
-							<p className='text-gray-500'>
-								По вашему запросу ничего не найдено
-							</p>
-						</TransitionView>
-					)}
-				</div>
-			</Container>
-		</main>
+		<Suspense>
+			<MainContent />
+		</Suspense>
 	);
 };
 

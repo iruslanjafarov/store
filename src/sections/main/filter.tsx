@@ -21,22 +21,37 @@ const Filter = () => {
 
 	const { loading } = useCategories();
 
+	const selectedCategories =
+		searchParams.get('cat')?.split(',').map(Number) ?? []; //cat - categories
+
 	const setCategory = (id: number) => {
 		const params = new URLSearchParams(searchParams.toString());
 
-		const categories = params.get('cat')?.split(',').map(Number) ?? []; //cat - categories
+		const categories = params.get('cat')?.split(',').map(Number) ?? [];
 
 		const updateCategories = categories?.includes(id)
 			? categories?.filter((selectedCategory) => selectedCategory !== id)
 			: [...categories, id];
 
 		if (updateCategories?.length) {
-			params?.set('cat', updateCategories?.join(',')); //cat - categories
+			params?.set('cat', updateCategories?.join(','));
 		} else {
-			params?.delete('cat'); //cat - categories
+			params?.delete('cat');
 		}
 
 		router.replace(`${pathname}?${params.toString()}`, {
+			scroll: false,
+		});
+	};
+
+	const resetFilters = () => {
+		const params = new URLSearchParams(searchParams.toString());
+
+		params.delete('cat');
+
+		const query = params.toString();
+
+		router.replace(query ? `${pathname}?${query}` : pathname, {
 			scroll: false,
 		});
 	};
@@ -55,14 +70,18 @@ const Filter = () => {
 						</div>
 						<div className='space-y-6'>
 							{categories?.map(({ id, name }) => (
-								<div key={id} onClick={() => setCategory(id)}>
-									<Checkbox label={name} />
-								</div>
+								<Checkbox
+									key={id}
+									label={name}
+									checked={selectedCategories?.includes(id)}
+									onChange={() => setCategory(id)}
+								/>
 							))}
 							<div className='border-t border-gray-200/60' />
 						</div>
 						<Button
 							label='Сбросить фильтры'
+							onClick={resetFilters}
 							className='mt-6 w-full bg-black px-4! py-2.5! text-sm font-medium text-white cursor-pointer'
 						/>
 					</>

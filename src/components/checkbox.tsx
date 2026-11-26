@@ -1,28 +1,23 @@
-import { useState } from 'react';
-
-import { Checkbox as CheckboxComponent } from '@headlessui/react';
+import { Checkbox as CheckboxComponent, Field, Label } from '@headlessui/react';
 
 import Icon from '@/components/icon';
 
 interface ICheckbox {
+	checked?: boolean;
+	onChange?: (state: boolean) => void;
 	label: string;
 }
 
 //TODO: JSDoc
 
-const Checkbox = ({ label }: ICheckbox) => {
-	const [active, setActive] = useState(false);
-
+const Checkbox = ({ checked, onChange, label }: ICheckbox) => {
 	return (
-		<div
-			className='flex cursor-pointer items-center gap-2'
-			onClick={() => setActive((prev) => !prev)}
-		>
+		<Field className='flex items-center gap-2 cursor-pointer'>
 			<CheckboxComponent
-				checked={active}
-				onChange={setActive}
+				checked={checked}
+				onChange={onChange}
 				onClick={(e) => e.stopPropagation()}
-				className='group flex size-5 shrink-0 items-center justify-center rounded-md border border-gray-300 bg-white transition-all duration-200 outline-none data-checked:border-black data-checked:bg-black'
+				className='group flex size-5 shrink-0 items-center justify-center rounded-md border border-gray-300 bg-white transition-all duration-200 outline-none cursor-pointer data-checked:border-black data-checked:bg-black'
 			>
 				<Icon
 					name='check'
@@ -30,8 +25,10 @@ const Checkbox = ({ label }: ICheckbox) => {
 				/>
 			</CheckboxComponent>
 
-			<span className='text-sm text-gray-500 transition-colors'>{label}</span>
-		</div>
+			<Label className='text-sm text-gray-500 cursor-pointer transition-colors'>
+				{label}
+			</Label>
+		</Field>
 	);
 };
 

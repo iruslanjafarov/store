@@ -1,13 +1,15 @@
 interface IButton {
 	label: string;
+	onClick?: () => void;
 	className?: string;
 }
 
-//TODO: Добавить событие и JSDoc
+//TODO: JSDoc
 
-const Button = ({ label, className }: IButton) => {
+const Button = ({ label, onClick, className }: IButton) => {
 	return (
 		<button
+			onClick={onClick}
 			className={`py-3 border border-white bg-black text-white cursor-pointer w-full ${className}`}
 		>
 			{label}
