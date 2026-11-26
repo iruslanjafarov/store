@@ -1,9 +1,11 @@
 import Bag from '@/assets/icons/bag.svg';
 import User from '@/assets/icons/user.svg';
+import Check from '@/assets/icons/check.svg';
 
 const icons = {
 	bag: Bag,
 	user: User,
+	check: Check,
 };
 
 /**
@@ -26,9 +28,9 @@ interface IconProps {
  */
 
 const Icon = ({ name, className }: IconProps) => {
-	const SvgIcon = icons[name];
+	const Icon = icons[name];
 
-	return <SvgIcon className={className} />;
+	return <Icon className={className} />;
 };
 
 export default Icon;

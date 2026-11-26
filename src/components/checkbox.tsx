@@ -2,6 +2,8 @@ import { useState } from 'react';
 
 import { Checkbox as CheckboxComponent } from '@headlessui/react';
 
+import Icon from '@/components/icon';
+
 interface ICheckbox {
 	label: string;
 }
@@ -21,7 +23,13 @@ const Checkbox = ({ label }: ICheckbox) => {
 				onChange={setActive}
 				onClick={(e) => e.stopPropagation()}
 				className='group flex size-5 shrink-0 items-center justify-center rounded-md border border-gray-300 bg-white transition-all duration-200 outline-none data-checked:border-black data-checked:bg-black'
-			/>
+			>
+				<Icon
+					name='check'
+					className='size-4 stroke-white opacity-0 transition-opacity group-data-checked:opacity-100'
+				/>
+			</CheckboxComponent>
+
 			<span className='text-sm text-gray-500 transition-colors'>{label}</span>
 		</div>
 	);

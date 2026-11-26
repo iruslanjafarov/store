@@ -1,28 +1,44 @@
 'use client';
 
-import useStore from '@/store/store';
+import { useRouter, usePathname, useSearchParams } from 'next/navigation';
 
 import useCategories from '@/hooks/useCategories';
+
+import useStore from '@/store/store';
 
 import Button from '@/components/button';
 import Checkbox from '@/components/checkbox';
 import Spinner from '@/components/spinner';
 
-//TODO: Редизайн. JSDoc
+//TODO: Редизайн?. JSDoc
 
 const Filter = () => {
-	const { categories, selectedCategories, setSelectedCategories } = useStore();
+	const router = useRouter();
+	const pathname = usePathname();
+	const searchParams = useSearchParams();
+
+	const { categories } = useStore();
 
 	const { loading } = useCategories();
 
 	const setCategory = (id: number) => {
-		setSelectedCategories(
-			selectedCategories?.includes(id)
-				? selectedCategories?.filter(
-						(selectedCategory) => selectedCategory !== id,
-					)
-				: [...selectedCategories, id],
-		);
+		const params = new URLSearchParams(searchParams.toString());
+
+		const categories = params.get('cat')?.split(',').map(Number) ?? []; //cat - categories
+
+		const updateCategories = categories?.includes(id)
+			? categories?.filter((selectedCategory) => selectedCategory !== id)
+			: [...categories, id];
+
+		if (updateCategories?.length) {
+			params?.set('cat', updateCategories?.join(',')); //cat - categories
+		} else {
+			params?.delete('cat'); //cat - categories
+		}
+
+		router.replace(`${pathname}?${params.toString()}`, {
+			scroll: false,
+		});
 	};
 
 	return (

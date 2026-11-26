@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useSearchParams } from 'next/navigation';
+import { useState, useMemo, useEffect } from 'react';
 
 import { supabase } from '@/utils/supabase/supabase';
 
@@ -12,9 +13,18 @@ import useStore from '@/store/store';
  */
 
 const useProducts = () => {
+	const searchParams = useSearchParams();
+
 	const [loading, setLoading] = useState<boolean>(true);
 
-	const { selectedCategories, setProducts } = useStore();
+	const selectedCategories = useMemo(() => {
+		return (searchParams.get('cat') ?? '')
+			.split(',')
+			.map(Number)
+			.filter((category) => Number?.isFinite(category) && category !== 0);
+	}, [searchParams]);
+
+	const { setProducts } = useStore();
 
 	useEffect(() => {
 		const fetchData = async () => {
