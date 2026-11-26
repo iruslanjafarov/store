@@ -12,7 +12,7 @@ import Container from '@/components/container';
 import TransitionView from '@/components/transitionView';
 import Spinner from '@/components/spinner';
 import Filter from '@/sections/main/filter';
-import MainItem from '@/components/main/item';
+import Product from '@/components/main/product';
 
 /**
  * Главная страница магазина с каталогом товаров и фильтрацией.
@@ -21,7 +21,7 @@ import MainItem from '@/components/main/item';
  * @returns {JSX.Element} Компонент главной страницы
  */
 
-const MainContent = () => {
+const Content = () => {
 	const [isFirstView, setIsFirstView] = useState(true);
 
 	const { loading } = useProducts();
@@ -45,7 +45,7 @@ const MainContent = () => {
 								animate={isFirstView}
 								onAnimationComplete={() => setIsFirstView(false)}
 							>
-								<MainItem
+								<Product
 									id={id}
 									name={name}
 									price={price}
@@ -66,4 +66,4 @@ const MainContent = () => {
 	);
 };
 
-export default MainContent;
+export default Content;

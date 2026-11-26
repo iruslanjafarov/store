@@ -10,7 +10,17 @@ import Button from '@/components/button';
 import Checkbox from '@/components/checkbox';
 import Spinner from '@/components/spinner';
 
-//TODO: Редизайн?. JSDoc
+
+
+/**
+ * Компонент боковой панели фильтрации товаров по категориям.
+ * Позволяет выбирать несколько категорий, синхронизируя выбранные значения с URL,
+ * а также сбрасывать активные фильтры.
+ *
+ * @returns {JSX.Element} Боковая панель фильтрации товаров
+ */
+
+//TODO: Редизайн?
 
 const Filter = () => {
 	const router = useRouter();

@@ -1,10 +1,23 @@
+/**
+ * Свойства универсальной кнопки.
+ *
+ * @property {string} label - Текст кнопки
+ * @property {() => void} [onClick] - Обработчик нажатия
+ * @property {string} [className] - Дополнительные CSS-классы
+ */
+
 interface IButton {
 	label: string;
 	onClick?: () => void;
 	className?: string;
 }
 
-//TODO: JSDoc
+/**
+ * Компонент универсальной кнопки.
+ *
+ * @param {IButton} props - Свойства компонента
+ * @returns {JSX.Element} Компонент кнопки
+ */
 
 const Button = ({ label, onClick, className }: IButton) => {
 	return (

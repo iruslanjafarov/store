@@ -2,13 +2,26 @@ import { Checkbox as CheckboxComponent, Field, Label } from '@headlessui/react';
 
 import Icon from '@/components/icon';
 
+/**
+ * Свойства компонента чекбокса.
+ *
+ * @property {boolean} [checked] - Состояние чекбокса
+ * @property {(state: boolean) => void} [onChange] - Обработчик изменения состояния
+ * @property {string} label - Текст подписи чекбокса
+ */
+
 interface ICheckbox {
 	checked?: boolean;
 	onChange?: (state: boolean) => void;
 	label: string;
 }
 
-//TODO: JSDoc
+/**
+ * Компонент чекбокса с возможностью управления состоянием и отображением подписи.
+ *
+ * @param {ICheckbox} props - Свойства компонента
+ * @returns {JSX.Element} Чекбокс с подписью
+ */
 
 const Checkbox = ({ checked, onChange, label }: ICheckbox) => {
 	return (
