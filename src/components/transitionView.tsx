@@ -8,12 +8,16 @@ import { motion } from 'motion/react';
  * @property {ReactNode} children - Дочерние элементы компонента
  * @property {number} index - Индекс элемента для расчёта задержки анимации
  * @property {string} [className] - Дополнительные CSS-классы
+ * @property {boolean} [animate] - Определяет, должна ли применяться начальная анимация
+ * @property {() => void} [onAnimationComplete] - Функция, вызываемая после завершения анимации
  */
 
 interface ITransitionView {
 	children: ReactNode;
 	index: number;
 	className?: string;
+	animate?: boolean;
+	onAnimationComplete?: () => void;
 }
 
 /**
@@ -24,13 +28,20 @@ interface ITransitionView {
  * @returns {JSX.Element} Компонент анимированной обёртки
  */
 
-const TransitionView = ({ children, index, className }: ITransitionView) => {
+const TransitionView = ({
+	children,
+	index,
+	className,
+	animate,
+	onAnimationComplete,
+}: ITransitionView) => {
 	return (
 		<motion.div
 			custom={index}
-			initial='hidden'
+			initial={animate ? 'hidden' : false}
 			animate='visible'
 			exit='hidden'
+			onAnimationComplete={onAnimationComplete}
 			className={className}
 			variants={{
 				hidden: { opacity: 0, y: 10 },
