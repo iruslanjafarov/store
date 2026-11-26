@@ -1,5 +1,3 @@
-import Image from 'next/image';
-
 import Bag from '@/assets/icons/bag.svg';
 import User from '@/assets/icons/user.svg';
 
@@ -28,7 +26,9 @@ interface IconProps {
  */
 
 const Icon = ({ name, className }: IconProps) => {
-	return <Image src={icons[name]} alt={name} className={className} />;
+	const SvgIcon = icons[name];
+
+	return <SvgIcon className={className} />;
 };
 
 export default Icon;
