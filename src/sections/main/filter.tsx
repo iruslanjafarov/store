@@ -10,8 +10,6 @@ import Button from '@/components/button';
 import Checkbox from '@/components/checkbox';
 import Spinner from '@/components/spinner';
 
-
-
 /**
  * Компонент боковой панели фильтрации товаров по категориям.
  * Позволяет выбирать несколько категорий, синхронизируя выбранные значения с URL,
@@ -90,10 +88,12 @@ const Filter = () => {
 							<div className='border-t border-gray-200/60' />
 						</div>
 						<Button
-							label='Сбросить фильтры'
 							onClick={resetFilters}
-							className='mt-6 w-full bg-black px-4! py-2.5! text-sm font-medium text-white cursor-pointer'
-						/>
+							className='mt-6 w-full bg-black px-4! py-2.5! text-sm font-medium disabled:opacity-50 disabled:cursor-not-allowed'
+							disabled={!selectedCategories?.length}
+						>
+							Сбросить фильтры
+						</Button>
 					</>
 				)}
 			</div>

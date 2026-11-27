@@ -27,8 +27,8 @@ const Product = ({ name, price, thumbnail }: IProduct) => {
 			<h3 className='text-gray-600'>{name}</h3>
 			<data value={price}>{price} ₽</data>
 			<div className='flex w-full flex-1 gap-2'>
-				<Button label='В корзину' />
-				<Button label='Купить сразу' />
+				<Button>В корзину</Button>
+				<Button>Купить сразу</Button>
 			</div>
 		</div>
 	);

@@ -1,31 +1,25 @@
-/**
- * Свойства универсальной кнопки.
- *
- * @property {string} label - Текст кнопки
- * @property {() => void} [onClick] - Обработчик нажатия
- * @property {string} [className] - Дополнительные CSS-классы
- */
-
-interface IButton {
-	label: string;
-	onClick?: () => void;
-	className?: string;
-}
+import { ComponentProps } from 'react';
 
 /**
- * Компонент универсальной кнопки.
+ * Универсальный компонент кнопки.
  *
- * @param {IButton} props - Свойства компонента
+ * @param {ComponentProps<'button'>} props - Свойства кнопки
  * @returns {JSX.Element} Компонент кнопки
  */
 
-const Button = ({ label, onClick, className }: IButton) => {
+const Button = ({
+	children,
+	onClick,
+	className,
+	...props
+}: ComponentProps<'button'>) => {
 	return (
 		<button
 			onClick={onClick}
 			className={`py-3 border border-white bg-black text-white cursor-pointer w-full ${className}`}
+			{...props}
 		>
-			{label}
+			{children}
 		</button>
 	);
 };
