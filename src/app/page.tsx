@@ -1,6 +1,6 @@
 import { Suspense } from 'react';
 
-import MainContent from '@/sections/main/suspense/content';
+import MainSection from '@/sections/main';
 
 /**
  * Главная страница магазина с каталогом товаров и фильтрацией.
@@ -11,7 +11,7 @@ import MainContent from '@/sections/main/suspense/content';
 const Main = () => {
 	return (
 		<Suspense>
-			<MainContent />
+			<MainSection />
 		</Suspense>
 	);
 };

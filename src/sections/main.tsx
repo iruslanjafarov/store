@@ -21,7 +21,7 @@ import Product from '@/components/main/product';
  * @returns {JSX.Element} Компонент главной страницы
  */
 
-const Content = () => {
+const Main = () => {
 	const [isFirstView, setIsFirstView] = useState(true);
 
 	const { loading } = useProducts();
@@ -66,4 +66,4 @@ const Content = () => {
 	);
 };
 
-export default Content;
+export default Main;
