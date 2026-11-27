@@ -17,7 +17,7 @@ import Icon from '@/components/icon';
 const Header = () => {
 	const router = useRouter();
 
-	const handleBag = () => {
+	const handleUser = () => {
 		router.push('/login');
 	};
 
@@ -29,8 +29,12 @@ const Header = () => {
 						<h1 className='text-xl font-bold tracking-tighter'>Jafarov</h1>
 					</Link>
 					<div className='flex items-center gap-2'>
-						<Icon name='bag' onClick={handleBag} className='size-6 cursor-pointer' />
-						<Icon name='user' className='size-6 cursor-not-allowed' />
+						<Icon name='bag' className='size-6 cursor-not-allowed' />
+						<Icon
+							name='user'
+							onClick={handleUser}
+							className='size-6 cursor-pointer'
+						/>
 					</div>
 				</div>
 			</Container>
