@@ -1,6 +1,6 @@
 import { Suspense } from 'react';
 
-import MainSection from '@/sections/main';
+import MainSection from '@/sections/main/main';
 
 /**
  * Главная страница магазина с каталогом товаров и фильтрацией.
