@@ -54,11 +54,11 @@ const Content = () => {
 							</TransitionView>
 						))
 					) : (
-						<TransitionView index={1} className='w-full text-center'>
+						<div className='w-full text-center'>
 							<p className='text-gray-500'>
 								По вашему запросу ничего не найдено
 							</p>
-						</TransitionView>
+						</div>
 					)}
 				</div>
 			</Container>

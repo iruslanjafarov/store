@@ -28,6 +28,8 @@ const useProducts = () => {
 
 	useEffect(() => {
 		const fetchData = async () => {
+			setLoading(true);
+
 			let query = supabase.from('products').select('*').order('id');
 
 			if (selectedCategories?.length) {
