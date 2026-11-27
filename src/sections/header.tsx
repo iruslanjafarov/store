@@ -1,3 +1,6 @@
+'use client';
+
+import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 
 import Container from '@/components/container';
@@ -12,6 +15,12 @@ import Icon from '@/components/icon';
  */
 
 const Header = () => {
+	const router = useRouter();
+
+	const handleBag = () => {
+		router.push('/login');
+	};
+
 	return (
 		<header className='sticky top-4 z-50'>
 			<Container className='max-w-250!'>
@@ -20,8 +29,8 @@ const Header = () => {
 						<h1 className='text-xl font-bold tracking-tighter'>Jafarov</h1>
 					</Link>
 					<div className='flex items-center gap-2'>
-						<Icon name='bag' className='size-6' />
-						<Icon name='user' className='size-6' />
+						<Icon name='bag' onClick={handleBag} className='size-6 cursor-pointer' />
+						<Icon name='user' className='size-6 cursor-not-allowed' />
 					</div>
 				</div>
 			</Container>

@@ -12,11 +12,13 @@ const icons = {
  * Свойства компонента Icon.
  *
  * @property {'bag' | 'user'} name - Название иконки.
+ * @property {() => void} [onClick] - Обработчик нажатия на иконку
  * @property {string} [className] - Дополнительные CSS-классы.
  */
 
 interface IconProps {
-	name: keyof typeof icons;
+  name: keyof typeof icons;
+  onClick?: () => void;
 	className?: string;
 }
 
@@ -27,10 +29,10 @@ interface IconProps {
  * @returns {JSX.Element} Компонент иконки.
  */
 
-const Icon = ({ name, className }: IconProps) => {
+const Icon = ({ name, onClick, className }: IconProps) => {
 	const Icon = icons[name];
 
-	return <Icon className={className} />;
+	return <Icon onClick={onClick} className={className} />;
 };
 
 export default Icon;
