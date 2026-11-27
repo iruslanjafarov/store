@@ -7,6 +7,7 @@
  * @property {string} [category] - Категория товара
  * @property {string} [description] - Описание товара
  * @property {string} thumbnail - Ссылка на изображение товара
+ * @property {{ name: string } | null} categories - Связанная категория товара
  */
 
 export interface IProduct {
@@ -16,4 +17,7 @@ export interface IProduct {
 	category?: string;
 	description?: string;
 	thumbnail: string;
+	category: {
+		name: string;
+	} | null;
 }
