@@ -2,7 +2,7 @@
 
 import { useRouter, usePathname, useSearchParams } from 'next/navigation';
 
-import useCategories from '@/hooks/useCategories';
+import useCategories from '@/hooks/categories/useCategories';
 
 import useStore from '@/store/store';
 

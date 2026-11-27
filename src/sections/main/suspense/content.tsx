@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 
-import useProducts from '@/hooks/useProducts';
+import useProducts from '@/hooks/products/useProducts';
 
 import useStore from '@/store/store';
 

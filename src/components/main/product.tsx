@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import Image from 'next/image';
 
 import { IProduct } from '@/types/product';
@@ -11,10 +12,11 @@ import Button from '@/components/button';
  * @returns {JSX.Element} Компонент карточки товара
  */
 
-const Product = ({ name, price, thumbnail }: IProduct) => {
+const Product = ({ id, name, price, thumbnail }: IProduct) => {
 	return (
-		<div className='w-60 flex flex-col shrink-0 gap-2'>
-			<div className='size-60 flex shrink-0 flex-col gap-2'>
+		<div className='relative flex w-60 shrink-0 flex-col gap-2'>
+			<Link href={`/detail/${id}`} className='absolute inset-0 z-0' />
+			<div className='relative z-10 flex size-60 shrink-0 flex-col gap-2 pointer-events-none'>
 				<Image
 					src={thumbnail}
 					alt={name}
@@ -24,9 +26,14 @@ const Product = ({ name, price, thumbnail }: IProduct) => {
 					loading='eager'
 				/>
 			</div>
-			<h3 className='text-gray-600'>{name}</h3>
-			<data value={price}>{price} ₽</data>
-			<div className='flex w-full flex-1 gap-2'>
+			<h3 className='pointer-events-none relative z-10 text-gray-600'>
+				{name}
+			</h3>
+			<data className='pointer-events-none relative z-10' value={price}>
+				{price} ₽
+			</data>
+
+			<div className='relative z-10 flex w-full flex-1 gap-2'>
 				<Button>В корзину</Button>
 				<Button>Купить сразу</Button>
 			</div>
